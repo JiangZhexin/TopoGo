@@ -93,6 +93,24 @@ await page.waitForTimeout(600);
 console.log('result banner =', (await page.locator('.result-banner').textContent().catch(() => '(none)'))?.trim());
 await status('finished');
 
+// 3D 视图冒烟：切 3D 断言 canvas 出现；切双视图断言 svg 与 canvas 同时存在
+await page.getByRole('button', { name: '3D 曲面' }).click();
+await page.waitForTimeout(800);
+const canvas3d = await page.locator('.board3d canvas').count();
+const svgIn3d = await page.locator('svg').count();
+console.log(`3d view: canvas=${canvas3d} svg=${svgIn3d}`);
+if (canvas3d === 0) throw new Error('3D view: canvas missing');
+if (svgIn3d !== 0) throw new Error('3D view: 2D svg should be hidden');
+await page.getByRole('button', { name: '双视图' }).click();
+await page.waitForTimeout(800);
+const splitCanvas = await page.locator('.board3d canvas').count();
+const splitSvg = await page.locator('svg').count();
+console.log(`split view: svg=${splitSvg} canvas=${splitCanvas}`);
+if (splitSvg === 0 || splitCanvas === 0) throw new Error('split view: svg and canvas must coexist');
+await page.getByRole('button', { name: '2D 棋盘' }).click();
+await page.waitForTimeout(500);
+console.log(`back to 2d: canvas=${await page.locator('.board3d canvas').count()}`);
+
 console.log('--- errors ---');
 for (const e of errors) console.log(e);
 if (errors.length === 0) console.log('(none)');

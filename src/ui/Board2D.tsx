@@ -23,6 +23,8 @@ export interface BoardProps {
   influence: InfluenceResult | null;
   showInfluence: boolean;
   onIntersection: (v: number) => void;
+  /** 悬停格点变化时上报（用于 3D 视图联动高亮；可选） */
+  onHoverVertex?: (v: number | null) => void;
 }
 
 function starPoints(n: number): [number, number][] {
@@ -210,8 +212,14 @@ export function Board2D(props: BoardProps) {
               width={S}
               height={S}
               fill="transparent"
-              onMouseEnter={() => setHover(v)}
-              onMouseLeave={() => setHover((h) => (h === v ? null : h))}
+              onMouseEnter={() => {
+                setHover(v);
+                props.onHoverVertex?.(v);
+              }}
+              onMouseLeave={() => {
+                setHover((h) => (h === v ? null : h));
+                props.onHoverVertex?.(null);
+              }}
               onClick={() => onIntersection(v)}
               style={{ cursor: 'pointer' }}
             />

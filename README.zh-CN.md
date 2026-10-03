@@ -32,7 +32,7 @@ Windows 用户可双击 `TopoGo-Start.bat`：脚本自动检测服务器状态�
 npm ci            # 安装依赖（提交 package-lock.json）
 npm run dev       # 开发服务（默认 http://localhost:5173）
 npm run typecheck # TypeScript 检查
-npm run test      # Vitest 单元/夹具测试（62 个）
+npm run test      # Vitest 单元/夹具测试（77 个）
 npm run build     # 生产构建到 dist/
 npm run preview   # 本地静态预览构建产物
 ```
@@ -44,6 +44,7 @@ npm run preview   # 本地静态预览构建产物
 - 悔棋 / 前进后退复盘 / 从此处继续（显式截断尾部）
 - 自动保存（localStorage）+ JSON 棋谱导入导出（内核重放校验，拒绝篡改结果）
 - 接缝箭头、幽灵副本（点击副本=点击本体）、悬停显示棋串的气与跨缝邻点
+- 3D 曲面视图：零新增依赖的自绘 Canvas 3D，把当前棋局实时映射到对应拓扑曲面上（拖拽旋转、空闲自转，2D/3D/双视图切换并持久化到 localStorage）；RP² 采用 Cross-cap 浸入，其自交线只是三维投影假象
 - 局势辅助（均为启发式，不裁定终局）：势力图（离散调和方程，Gauss–Seidel，标注收敛状态）、叫吃/二气警示、一手提子点、势力折算差参考估值；Web Worker 计算，过期回复按 revision 丢弃
 
 ## 目录
@@ -51,6 +52,7 @@ npm run preview   # 本地静态预览构建产物
 ```text
 src/core/       规则内核（纯 TS，与 React/DOM 无关）
 src/analysis/   势力/战术分析与 Web Worker
+src/render3d/   3D 视图的参数曲面与透视投影（纯函数）
 src/ui/         SVG 棋盘与面板组件
 src/io/         棋谱 JSON 与 localStorage
 tests/          Vitest 测试（拓扑/规则/计分/历史/评估/IO）

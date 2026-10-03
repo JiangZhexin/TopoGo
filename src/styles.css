@@ -116,5 +116,65 @@ select, input[type="number"] {
 .confirm-pill.yes { background: #c8e6c9; color: #256029; }
 
 ul.tight { margin: 4px 0; padding-left: 18px; font-size: 12.5px; }
+
+/* ---- 视图模式切换与 3D 视图 ---- */
+.view-switch {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+.view-switch button.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.view-switch button.active:hover:not(:disabled) { background: #7b5e52; }
+
+.board-single { display: flex; justify-content: center; }
+
+.board-split {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.board-split .board-pane-2d {
+  flex: 3 1 420px; /* 约 60% */
+  min-width: 320px;
+  overflow: auto;
+}
+.board-split .board-pane-3d {
+  flex: 2 1 300px; /* 约 40% */
+  min-width: 280px;
+}
+.board-single .board-pane-3d {
+  width: min(640px, 100%);
+}
+
+.board3d {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--panel-bg);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.board3d canvas { width: 100%; height: 100%; }
+.board3d-info {
+  position: absolute;
+  left: 8px;
+  top: 6px;
+  max-width: calc(100% - 16px);
+  font-size: 12px;
+  line-height: 1.5;
+  color: #4a3b2e;
+  background: rgba(250, 247, 242, 0.82);
+  padding: 3px 8px;
+  border-radius: 6px;
+  pointer-events: none;
+}
+.board3d-info strong { margin-right: 6px; }
+
 .review-bar { display: flex; gap: 6px; align-items: center; justify-content: center; margin-top: 8px; }
 .review-hint { text-align: center; color: #b26a00; font-size: 12px; margin-top: 4px; }

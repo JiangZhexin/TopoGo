@@ -16,6 +16,7 @@ import { createGame } from './core/state';
 import type { TopologyId } from './core/types';
 import { loadGame, saveGame } from './io/storage';
 import { Board2D } from './ui/Board2D';
+import { Board3D } from './ui/Board3D';
 import { GamePanel } from './ui/GamePanel';
 import { ScoringPanel } from './ui/ScoringPanel';
 import { AnalysisPanel } from './ui/AnalysisPanel';
@@ -29,8 +30,24 @@ function initialState(): GameState {
   return createGame({ topologyId: 'torus', n: 19, komi: 7.5 });
 }
 
+type ViewMode = '2d' | '3d' | 'split';
+
+const VIEW_MODE_KEY = 'topogo-view-mode';
+
+function initialViewMode(): ViewMode {
+  try {
+    const v = localStorage.getItem(VIEW_MODE_KEY);
+    if (v === '2d' || v === '3d' || v === 'split') return v;
+  } catch {
+    /* localStorage 不可用时用默认 */
+  }
+  return '2d';
+}
+
 export default function App() {
   const [state, setState] = useState<GameState>(initialState);
+  const [viewMode, setViewMode] = useState<ViewMode>(initialViewMode);
+  const [hoverVertex, setHoverVertex] = useState<number | null>(null);
   const [showSeams, setShowSeams] = useState(true);
   const [showGhosts, setShowGhosts] = useState(true);
   const [showLiberties, setShowLiberties] = useState(false);
@@ -120,6 +137,15 @@ export default function App() {
     }
   }, [state]);
 
+  // ---- 视图模式持久化 ----
+  useEffect(() => {
+    try {
+      localStorage.setItem(VIEW_MODE_KEY, viewMode);
+    } catch {
+      /* 忽略持久化失败 */
+    }
+  }, [viewMode]);
+
   // ---- 操作 ----
   const apply = useCallback((r: ActionResult) => {
     if (r.ok) {
@@ -179,15 +205,45 @@ export default function App() {
   return (
     <div className="app">
       <div className="board-wrap">
-        <Board2D
-          state={state}
-          showSeams={showSeams}
-          showGhosts={showGhosts}
-          showLiberties={showLiberties}
-          influence={influence}
-          showInfluence={showInfluence}
-          onIntersection={onIntersection}
-        />
+        <div className="view-switch" role="group" aria-label="视图模式">
+          <button className={viewMode === '2d' ? 'active' : ''} onClick={() => setViewMode('2d')}>
+            2D 棋盘
+          </button>
+          <button className={viewMode === '3d' ? 'active' : ''} onClick={() => setViewMode('3d')}>
+            3D 曲面
+          </button>
+          <button className={viewMode === 'split' ? 'active' : ''} onClick={() => setViewMode('split')}>
+            双视图
+          </button>
+        </div>
+        <div className={viewMode === 'split' ? 'board-split' : 'board-single'}>
+          {viewMode !== '3d' && (
+            <div className="board-pane-2d">
+              <Board2D
+                state={state}
+                showSeams={showSeams}
+                showGhosts={showGhosts}
+                showLiberties={showLiberties}
+                influence={influence}
+                showInfluence={showInfluence}
+                onIntersection={onIntersection}
+                onHoverVertex={setHoverVertex}
+              />
+            </div>
+          )}
+          {viewMode !== '2d' && (
+            <div className="board-pane-3d">
+              <Board3D
+                topologyId={state.topologyId}
+                n={state.n}
+                board={state.board}
+                lastMove={state.lastMove}
+                dead={state.scoring?.dead}
+                highlightVertex={hoverVertex}
+              />
+            </div>
+          )}
+        </div>
         <ReviewControls state={state} onGoTo={(c) => apply(goTo(state, c))} />
         {actionError && <div className="error-text" style={{ textAlign: 'center', marginTop: 6 }}>{actionError}</div>}
       </div>

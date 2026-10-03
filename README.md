@@ -32,7 +32,7 @@ Windows users can double-click `TopoGo-Start.bat` — it detects whether the dev
 npm ci            # install dependencies (package-lock.json committed)
 npm run dev       # dev server (default http://localhost:5173)
 npm run typecheck # TypeScript checks
-npm run test      # Vitest unit/fixture tests (62 cases)
+npm run test      # Vitest unit/fixture tests (77 cases)
 npm run build     # production build to dist/
 npm run preview   # static preview of the build
 ```
@@ -44,6 +44,7 @@ npm run preview   # static preview of the build
 - Undo / back-and-forth review / "continue from here" (explicit tail truncation)
 - Auto-save (localStorage) + JSON game-record import/export (replay-validated by the core; tampered records rejected)
 - Seam arrows, ghost copies (clicking a ghost = clicking the original), hover highlights of a string's liberties and cross-seam neighbors
+- 3D surface view: a synchronized, dependency-free Canvas 3D rendering of the live board on its topological surface (drag to rotate, idle auto-spin, 2D/3D/split view switch persisted in localStorage); RP² uses a cross-cap immersion whose self-intersection line is a 3D projection artifact
 - Position assistant (all heuristics — never adjudicates the game): influence map (discrete harmonic equation, Gauss–Seidel with convergence status), atari/two-liberty warnings, one-move capture points, influence-based score estimate; computed in a Web Worker, stale replies dropped by revision
 
 ## Project Layout
@@ -51,6 +52,7 @@ npm run preview   # static preview of the build
 ```text
 src/core/       rules core (pure TypeScript, independent of React/DOM)
 src/analysis/   influence/tactical analysis + Web Worker
+src/render3d/   parametric surfaces & perspective projection for the 3D view
 src/ui/         SVG board and panel components
 src/io/         game-record JSON & localStorage
 tests/          Vitest suites (topology/rules/scoring/history/analysis/IO)
