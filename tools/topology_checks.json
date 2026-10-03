@@ -1,0 +1,278 @@
+[
+  {
+    "kind": "plane",
+    "n": 5,
+    "vertices": 25,
+    "edges": 40,
+    "faces": 16,
+    "euler": 1,
+    "orientable": true,
+    "boundaryComponents": 1,
+    "degreeHistogram": {
+      "2": 4,
+      "3": 12,
+      "4": 9
+    }
+  },
+  {
+    "kind": "torus",
+    "n": 5,
+    "vertices": 25,
+    "edges": 50,
+    "faces": 25,
+    "euler": 0,
+    "orientable": true,
+    "boundaryComponents": 0,
+    "degreeHistogram": {
+      "4": 25
+    }
+  },
+  {
+    "kind": "mobius",
+    "n": 5,
+    "vertices": 25,
+    "edges": 45,
+    "faces": 20,
+    "euler": 0,
+    "orientable": false,
+    "boundaryComponents": 1,
+    "degreeHistogram": {
+      "3": 10,
+      "4": 15
+    }
+  },
+  {
+    "kind": "klein",
+    "n": 5,
+    "vertices": 25,
+    "edges": 50,
+    "faces": 25,
+    "euler": 0,
+    "orientable": false,
+    "boundaryComponents": 0,
+    "degreeHistogram": {
+      "4": 25
+    }
+  },
+  {
+    "kind": "projective",
+    "n": 5,
+    "vertices": 25,
+    "edges": 48,
+    "faces": 24,
+    "euler": 1,
+    "orientable": false,
+    "boundaryComponents": 0,
+    "degreeHistogram": {
+      "3": 4,
+      "4": 21
+    }
+  },
+  {
+    "kind": "plane",
+    "n": 9,
+    "vertices": 81,
+    "edges": 144,
+    "faces": 64,
+    "euler": 1,
+    "orientable": true,
+    "boundaryComponents": 1,
+    "degreeHistogram": {
+      "2": 4,
+      "3": 28,
+      "4": 49
+    }
+  },
+  {
+    "kind": "torus",
+    "n": 9,
+    "vertices": 81,
+    "edges": 162,
+    "faces": 81,
+    "euler": 0,
+    "orientable": true,
+    "boundaryComponents": 0,
+    "degreeHistogram": {
+      "4": 81
+    }
+  },
+  {
+    "kind": "mobius",
+    "n": 9,
+    "vertices": 81,
+    "edges": 153,
+    "faces": 72,
+    "euler": 0,
+    "orientable": false,
+    "boundaryComponents": 1,
+    "degreeHistogram": {
+      "3": 18,
+      "4": 63
+    }
+  },
+  {
+    "kind": "klein",
+    "n": 9,
+    "vertices": 81,
+    "edges": 162,
+    "faces": 81,
+    "euler": 0,
+    "orientable": false,
+    "boundaryComponents": 0,
+    "degreeHistogram": {
+      "4": 81
+    }
+  },
+  {
+    "kind": "projective",
+    "n": 9,
+    "vertices": 81,
+    "edges": 160,
+    "faces": 80,
+    "euler": 1,
+    "orientable": false,
+    "boundaryComponents": 0,
+    "degreeHistogram": {
+      "3": 4,
+      "4": 77
+    }
+  },
+  {
+    "kind": "plane",
+    "n": 13,
+    "vertices": 169,
+    "edges": 312,
+    "faces": 144,
+    "euler": 1,
+    "orientable": true,
+    "boundaryComponents": 1,
+    "degreeHistogram": {
+      "2": 4,
+      "3": 44,
+      "4": 121
+    }
+  },
+  {
+    "kind": "torus",
+    "n": 13,
+    "vertices": 169,
+    "edges": 338,
+    "faces": 169,
+    "euler": 0,
+    "orientable": true,
+    "boundaryComponents": 0,
+    "degreeHistogram": {
+      "4": 169
+    }
+  },
+  {
+    "kind": "mobius",
+    "n": 13,
+    "vertices": 169,
+    "edges": 325,
+    "faces": 156,
+    "euler": 0,
+    "orientable": false,
+    "boundaryComponents": 1,
+    "degreeHistogram": {
+      "3": 26,
+      "4": 143
+    }
+  },
+  {
+    "kind": "klein",
+    "n": 13,
+    "vertices": 169,
+    "edges": 338,
+    "faces": 169,
+    "euler": 0,
+    "orientable": false,
+    "boundaryComponents": 0,
+    "degreeHistogram": {
+      "4": 169
+    }
+  },
+  {
+    "kind": "projective",
+    "n": 13,
+    "vertices": 169,
+    "edges": 336,
+    "faces": 168,
+    "euler": 1,
+    "orientable": false,
+    "boundaryComponents": 0,
+    "degreeHistogram": {
+      "3": 4,
+      "4": 165
+    }
+  },
+  {
+    "kind": "plane",
+    "n": 19,
+    "vertices": 361,
+    "edges": 684,
+    "faces": 324,
+    "euler": 1,
+    "orientable": true,
+    "boundaryComponents": 1,
+    "degreeHistogram": {
+      "2": 4,
+      "3": 68,
+      "4": 289
+    }
+  },
+  {
+    "kind": "torus",
+    "n": 19,
+    "vertices": 361,
+    "edges": 722,
+    "faces": 361,
+    "euler": 0,
+    "orientable": true,
+    "boundaryComponents": 0,
+    "degreeHistogram": {
+      "4": 361
+    }
+  },
+  {
+    "kind": "mobius",
+    "n": 19,
+    "vertices": 361,
+    "edges": 703,
+    "faces": 342,
+    "euler": 0,
+    "orientable": false,
+    "boundaryComponents": 1,
+    "degreeHistogram": {
+      "3": 38,
+      "4": 323
+    }
+  },
+  {
+    "kind": "klein",
+    "n": 19,
+    "vertices": 361,
+    "edges": 722,
+    "faces": 361,
+    "euler": 0,
+    "orientable": false,
+    "boundaryComponents": 0,
+    "degreeHistogram": {
+      "4": 361
+    }
+  },
+  {
+    "kind": "projective",
+    "n": 19,
+    "vertices": 361,
+    "edges": 720,
+    "faces": 360,
+    "euler": 1,
+    "orientable": false,
+    "boundaryComponents": 0,
+    "degreeHistogram": {
+      "3": 4,
+      "4": 357
+    }
+  }
+]
